@@ -1,0 +1,77 @@
+#include<iostream>
+#include<string>
+
+using namespace std;
+
+class queue{
+    private:
+        int front;
+        int rear ;
+        int arr[5];
+
+    public:
+        queue(){
+            front=-1;
+            rear=-1;
+            for(int i=0;i<5;i++){
+                arr[i]=0;
+            }
+        }
+
+        bool isFull(){
+            if(rear==4){
+                return true;
+            }
+            else
+            return false;
+        }
+
+        bool isEmpty(){
+            if (rear==front==-1){
+                return true;
+            }
+            else
+                return false;
+        }
+
+        void enQueue(int entry){
+            if(isFull()){
+                cout<<"overflow";
+            }
+            else if(isEmpty()){
+                rear++;
+                front++;
+                arr[rear]=entry;
+            }
+            else
+                rear++;
+                arr[rear]=entry;
+        }
+
+        int deQueue(int element){
+            if(isEmpty()){
+                cout<<"underflow";
+                return 0;
+            }
+            else if(rear==front){
+                element=arr[front];
+                arr[front]=0;
+                rear==front==-1;
+                return element;
+            }
+            else
+                element=arr[front];
+                arr[rear]=0;
+                for(int i=0;i<rear;i++){
+                    arr[front]=arr[front+1];
+                }
+                rear--;
+                return element;
+
+                
+        }
+
+
+
+
+};
